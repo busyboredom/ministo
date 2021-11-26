@@ -6,23 +6,23 @@
 </head>
 
 <body>
-  <script type="text/javascript" src="index.js"></script>
   <div class="header-bar">
     <img src="icon.png" class="header-item">
     <h1>Ministo</h1>
-    <span class="hamburger-menu header-item" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <img src="hamburger.png" class="header-item" id="hamburger-menu">
   </div>
   <div id="sideBar" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" id="close-nav">X</a>
     <a href="#">Home</a>
     <a href="#">Settings</a>
     <a href="#">Stats</a>
     <a href="#">Help</a>
   </div>
   <div class="center-container">
-    <button class="command-btn" onclick="printStatus()">Print Status</button>
+    <button class="command-btn" id="print-status">Print Status</button>
     <p id="status"></p>
   </div>
 </body>
 
 </html>
+<script type="text/javascript" src="index.js"></script>

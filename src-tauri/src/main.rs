@@ -3,7 +3,6 @@
   windows_subsystem = "windows"
 )]
 
-use env_logger;
 use log::info;
 use tauri::command;
 
