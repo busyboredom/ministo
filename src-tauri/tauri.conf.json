@@ -14,7 +14,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "com.github.vennilapugazhenthi.ministo",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -23,7 +23,9 @@
         "icons/icon.ico"
       ],
       "resources": [],
-      "externalBin": [],
+      "externalBin": [
+        "external-bin/xmrig"
+      ],
       "copyright": "",
       "category": "DeveloperTool",
       "shortDescription": "",
@@ -49,7 +51,11 @@
     "updater": {
       "active": false
     },
-    "allowlist": {},
+    "allowlist": {
+      "shell": {
+        "execute": true
+      }
+    },
     "windows": [
       {
         "title": "ministo",

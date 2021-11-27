@@ -13,11 +13,13 @@ build = "src/build.rs"
 
 [build-dependencies]
 tauri-build = { version = "1.0.0-beta.4" }
+num_cpus = "1"
 
 [dependencies]
-tauri = { version = "1.0.0-beta.8", features = [] }
+tauri = { git = "https://github.com/tauri-apps/tauri", branch = "next", features = ["shell-execute"] }
 log = "0.4"
 env_logger = "0.9"
+reqwest = "0.11"
 
 [features]
 default = [ "custom-protocol" ]

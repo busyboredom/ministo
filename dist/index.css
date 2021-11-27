@@ -99,4 +99,15 @@ h1 {
 .center-container {
     text-align: center;
 }
+
+.status {
+    margin: auto;
+    max-width: 25ch;
+    text-align: left;
+    display: none;
+}
+
+.status span {
+    float: right;
+}
      
