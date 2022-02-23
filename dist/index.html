@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link rel='stylesheet' type='text/css' href='index.css'>
+  <link rel='stylesheet' type='text/css' href='base.css'>
 </head>
 
 <body>
@@ -13,21 +13,20 @@
   </div>
   <div id="sideBar" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" id="close-nav">X</a>
-    <a href="#">Home</a>
-    <a href="#">Settings</a>
-    <a href="#">Stats</a>
-    <a href="#">Help</a>
+    <a href="javascript:void(0)" id="home-nav">Home</a>
+    <a href="javascript:void(0)" id="settings-nav">Settings</a>
+    <a href="javascript:void(0)" id="diagnostics-nav">Diagnostics</a>
+    <a href="javascript:void(0)" id="help-nav">Help</a>
   </div>
-  <div class="center-container">
-    <button class="command-btn" id="print-status">Print Status</button>
-    <p class="status" id="status">
-      Donation Percentage: <span id="donation-percentage"></span><br>
-      Hashrate (last 10s): <span id="hashrate-10s"></span><br>
-      Hashrate (last 60s): <span id="hashrate-60s"></span><br>
-      Hashrate (last 15m): <span id="hashrate-15m"></span>
-    </p>
+  <div id="page-content">
+
+    <div id="home"></div>
+    <div id="diagnostics"></div>
+
   </div>
 </body>
 
 </html>
-<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="home.js"></script>
+<script type="text/javascript" src="diagnostics.js"></script>

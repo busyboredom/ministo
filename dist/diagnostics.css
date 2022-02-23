@@ -1,0 +1,79 @@
+#stdout-container {
+    top: 8em;
+    left: 2em;
+    right: 2em;
+    height: calc(100% - 12em);
+    padding: 1em;
+    background-color: #272727;
+    color: green;
+    position: absolute;
+    overflow: scroll;
+}
+
+.tab {
+    position: absolute;
+    top: 0;
+    left: 2em;
+    height: 12em;
+}
+
+.tab .tab-button {
+    background-color: #151515;
+    color: #ffffff;
+    font-size: large;
+    border: 0;
+    padding: 0.5em;
+    border-radius: 0;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    width: 10em;
+}
+
+.tab-button.active {
+    background-color: #272727;
+}
+
+.terminal {
+    overflow: auto;
+}
+  
+.terminal .shell {
+    color: #32d132;
+    user-select: none;
+    pointer-events: none;
+}
+
+.terminal .cmd {
+    color: #419df3;
+}
+
+.terminal .hl {
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.terminal .arg {
+    color: white;
+}
+
+.terminal .str {
+    color: #ffba24;
+}
+
+.terminal .pipe, .terminal .punct {
+    color: #a2be00;
+}
+
+.terminal .flag {
+    color: #ff7167;
+}
+
+.terminal .esc {
+    color: #d558f5;
+    font-weight: bold;
+}
+
+.terminal .caret {
+    background-color: white;
+    user-select: none;
+}

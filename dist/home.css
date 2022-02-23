@@ -1,0 +1,29 @@
+.start {
+    background-color: #00e000;
+}
+
+.start:active {
+    background-color: green;
+}
+
+.stop {
+    background-color: red;
+}
+
+.stop:active {
+    background-color: darkred;
+}
+
+.center-container {
+    text-align: center;
+}
+
+.status {
+    margin: auto;
+    max-width: 20ch;
+    text-align: left;
+}
+
+.status span {
+    float: right;
+}

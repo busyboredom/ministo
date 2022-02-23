@@ -1,4 +1,4 @@
-body {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -82,7 +82,7 @@ h1 {
     margin-right: 50px;
 }
 
-.command-btn {
+button {
     background-color: #f26822;
     color: #000000;
     font-size: large;
@@ -92,22 +92,7 @@ h1 {
     margin-top: 5em;
 }
 
-.command-btn:active {
+button:active {
     background-color: #b44914;
-}
-
-.center-container {
-    text-align: center;
-}
-
-.status {
-    margin: auto;
-    max-width: 25ch;
-    text-align: left;
-    display: none;
-}
-
-.status span {
-    float: right;
 }
      
