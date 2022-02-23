@@ -10,14 +10,14 @@
     overflow: scroll;
 }
 
-.tab {
+#diagnostics-tabs {
     position: absolute;
     top: 0;
     left: 2em;
     height: 12em;
 }
 
-.tab .tab-button {
+#diagnostics-tabs .tab-button {
     background-color: #151515;
     color: #ffffff;
     font-size: large;
@@ -29,7 +29,7 @@
     width: 10em;
 }
 
-.tab-button.active {
+#diagnostics-tabs .tab-button.active {
     background-color: #272727;
 }
 

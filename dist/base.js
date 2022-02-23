@@ -6,13 +6,24 @@ window.state = {
         paused: false,
         stdout: [],
     },
+    p2pool: {
+        stdout: [],
+    },
+    monerod: {
+        stdout: [],
+    },
     activePage: "home",
+    pagesLoaded: false,
+    diagnostics: {
+        currentTab: "xmrig"
+    }
 }
 
 // Load pages.
 for (let page of pages) {
     loadPage(page);
 }
+window.state.pagesLoaded = true;
 
 // Open homepage.
 navigate("home");
@@ -47,10 +58,10 @@ function navigate(newPage) {
         document.getElementById(oldPage).style.display = "none";
     }
 
+    document.getElementById("sideBar").style.width = "0";
+
     document.getElementById(newPage).style.display = "block";
     state.activePage = newPage;
-
-    document.getElementById("sideBar").style.width = "0";
 }
 
 function loadPage(page) {

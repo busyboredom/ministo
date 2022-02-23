@@ -47,7 +47,7 @@ h1 {
     right: 0;
     background-color: #111;
     overflow-x: hidden;
-    transition: 0.25s;
+    transition: 0.20s;
     padding-top: 60px;
 }
 
@@ -58,7 +58,7 @@ h1 {
     font-size: x-large;
     color: #818181;
     display: block;
-    transition: 0.25s;
+    transition: 0.20s;
 }
 
 .sidenav #close-nav {

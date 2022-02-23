@@ -123,7 +123,6 @@ fn main() {
 struct MinistoState {
   xmrig_client: reqwest::Client,
   xmrig_bearer_token: String,
-  xmrig_stdout: Vec<String>,
 }
 
 impl MinistoState {
@@ -131,7 +130,6 @@ impl MinistoState {
     MinistoState {
       xmrig_client: reqwest::Client::new(),
       xmrig_bearer_token: "12345".to_string(),
-      xmrig_stdout: Vec::new(),
     }
   }
 }

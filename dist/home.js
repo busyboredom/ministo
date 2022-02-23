@@ -1,5 +1,31 @@
 setInterval(updateStatus, 10000)
 
+// LISTENERS ----------------------------------------------------------
+
+var initHomeInterval = setInterval(function () {
+    if (window.state.pagesLoaded) {
+        // Start mining.
+        document.getElementById("start-mining").addEventListener("click", () => {
+            window.__TAURI__
+                .invoke('start_mining');
+        })
+
+        // Pause mining.
+        document.getElementById("pause-mining").addEventListener("click", () => {
+            window.__TAURI__
+                .invoke('pause_mining');
+        })
+
+        // Resume mining.
+        document.getElementById("resume-mining").addEventListener("click", () => {
+            window.__TAURI__
+                .invoke('resume_mining');
+        })
+
+        clearTimeout(initHomeInterval);
+    }
+}, 100);
+
 // FUNCTIONS ----------------------------------------------------------
 
 function startMining() {
