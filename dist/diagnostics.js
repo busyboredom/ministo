@@ -35,14 +35,20 @@ function newTab(tabName) {
     }
 
     document.getElementById(tabName + "-stdout").style.display = "block";
-    updateStdout(tabName);
+
+    var stdoutContainer = document.getElementById("stdout-container");
+    stdoutContainer.scrollTop = stdoutContainer.scrollHeight;
 }
 
-function updateStdout(tabName) {
+function updateStdout(tabName, event) {
     const stdout = document.getElementById(tabName + "-stdout");
-    let state = window.state[tabName];
-    if (typeof state.stdout != "undefined") {
-        stdout.innerHTML = state.stdout.join("");
+
+    let newLine = document.createElement("p");
+    newLine.innerHTML = event.payload;
+    stdout.appendChild(newLine);
+
+    if (stdout.childElementCount > 1000) {
+        stdout.removeChild(stdout.firstElementChild);
     }
 
     var stdoutContainer = document.getElementById("stdout-container");
@@ -52,16 +58,5 @@ function updateStdout(tabName) {
 // EVENTS -------------------------------------------------------------
 
 window.__TAURI__.event.listen('xmrig-stdout', (event) => {
-    if (typeof window.state.xmrig.stdout == "undefined") {
-        window.state.xmrig.stdout = "";
-    }
-    window.state.xmrig.stdout.push(event.payload);
-
-    if (window.state.xmrig.stdout.length > 1000) {
-        window.state.xmrig.stdout.shift();
-    }
-
-    if (window.state.diagnostics.currentTab == "xmrig") {
-        updateStdout("xmrig");
-    }
+    updateStdout("xmrig", event);
 })

@@ -36,6 +36,10 @@
 .terminal {
     overflow: auto;
 }
+
+.terminal p {
+    margin: 0;
+}
   
 .terminal .shell {
     color: #32d132;

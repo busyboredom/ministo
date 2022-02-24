@@ -4,13 +4,6 @@ window.state = {
     xmrig: {
         running: false,
         paused: false,
-        stdout: [],
-    },
-    p2pool: {
-        stdout: [],
-    },
-    monerod: {
-        stdout: [],
     },
     activePage: "home",
     pagesLoaded: false,
