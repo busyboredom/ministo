@@ -2,14 +2,14 @@
 <html>
 
 <head>
-  <link rel='stylesheet' type='text/css' href='base.css'>
+  <link rel='stylesheet' type='text/css' href='base/base.css'>
 </head>
 
 <body>
   <div class="header-bar">
-    <img src="icon.png" class="header-item">
-    <h1>Ministo</h1>
-    <img src="hamburger.png" class="header-item" id="hamburger-menu">
+    <img src="base/icon.png" class="header-item" id="ministo-icon">
+    <h1 id="nav-title">Ministo</h1>
+    <img src="base/hamburger.png" class="header-item" id="hamburger-menu">
   </div>
   <div id="sideBar" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" id="close-nav">X</a>
@@ -21,12 +21,14 @@
   <div id="page-content">
 
     <div id="home"></div>
+    <div id="settings"></div>
     <div id="diagnostics"></div>
 
   </div>
 </body>
 
 </html>
-<script type="text/javascript" src="base.js"></script>
-<script type="text/javascript" src="home.js"></script>
-<script type="text/javascript" src="diagnostics.js"></script>
+<script type="text/javascript" src="base/base.js"></script>
+<script type="text/javascript" src="home/home.js"></script>
+<script type="text/javascript" src="settings/settings.js"></script>
+<script type="text/javascript" src="diagnostics/diagnostics.js"></script>

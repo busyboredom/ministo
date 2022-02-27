@@ -52,6 +52,8 @@ function updateStatus() {
             // Display hashrate.
             if (summary.hashrate.total[0] !== null) {
                 document.getElementById("hashrate-10s").innerText = summary.hashrate.total[0].toFixed(0) + " H/s";
+            } else {
+                document.getElementById("hashrate-10s").innerText = "0 H/s"
             }
         });
 }

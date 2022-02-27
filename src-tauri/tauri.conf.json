@@ -24,7 +24,8 @@
       ],
       "resources": [],
       "externalBin": [
-        "external-bin/xmrig"
+        "external-bin/xmrig",
+        "external-bin/p2pool"
       ],
       "copyright": "",
       "category": "DeveloperTool",
@@ -54,6 +55,9 @@
     "allowlist": {
       "shell": {
         "execute": true
+      },
+      "dialog": {
+        "open": true
       }
     },
     "windows": [

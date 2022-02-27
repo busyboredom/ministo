@@ -1,4 +1,4 @@
-const pages = ["home", "diagnostics"];
+const pages = ["home", "settings", "diagnostics"];
 
 window.state = {
     xmrig: {
@@ -9,7 +9,8 @@ window.state = {
     pagesLoaded: false,
     diagnostics: {
         currentTab: "xmrig"
-    }
+    },
+    config: null,
 }
 
 // Load pages.
@@ -19,7 +20,11 @@ for (let page of pages) {
 window.state.pagesLoaded = true;
 
 // Open homepage.
-navigate("home");
+navigate("settings");
+
+// Retrieve config.
+window.__TAURI__.invoke('get_config')
+    .then(config => window.state.config = config);
 
 // LISTENERS ----------------------------------------------------------
 
@@ -37,6 +42,14 @@ document.getElementById("close-nav").addEventListener("click", () => {
 document.getElementById("home-nav").addEventListener("click", () => {
     navigate("home");
 })
+document.getElementById("ministo-icon").addEventListener("click", () => {
+    navigate("home");
+})
+
+// Go to settings.
+document.getElementById("settings-nav").addEventListener("click", () => {
+    navigate("settings");
+})
 
 // Go to diagnostics.
 document.getElementById("diagnostics-nav").addEventListener("click", () => {
@@ -51,6 +64,8 @@ function navigate(newPage) {
         document.getElementById(oldPage).style.display = "none";
     }
 
+    let capsName = newPage.charAt(0).toUpperCase() + newPage.slice(1);
+    document.getElementById("nav-title").innerText = capsName;
     document.getElementById("sideBar").style.width = "0";
 
     document.getElementById(newPage).style.display = "block";
@@ -59,7 +74,7 @@ function navigate(newPage) {
 
 function loadPage(page) {
     let contentArea = document.getElementById(page);
-    fetch(page + ".html")
+    fetch(page + "/" + page + ".html")
         .then(content => content.text())
         .then(text => contentArea.innerHTML = text);
 }

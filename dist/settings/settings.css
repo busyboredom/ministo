@@ -1,0 +1,45 @@
+.settings-container {
+    margin: 2em;
+    text-align: center;
+}
+
+.settings-inner {
+    margin: auto;
+    text-align: left;
+    max-width: 80ch;
+}
+
+.settings-inner input {
+    background-color: #f26822;
+    border: #000000;
+    border-radius: 0.5ch;
+    padding: 0.5ch;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.settings-inner button {
+    margin: 0;
+}
+
+.settings-inner .save-container {
+    width: 100%;
+    text-align: center;
+}
+
+.save-container {
+    margin-top: 2em;
+}
+
+#save-effect-notice {
+    display: none;
+}
+
+.folder-select {
+    display: flex;
+    flex-direction: row;
+}
+
+.folder-select button {
+    width: 10ch;
+}

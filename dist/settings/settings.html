@@ -1,0 +1,17 @@
+<link rel='stylesheet' type='text/css' href='settings/settings.css'>
+
+<div class="settings-container">
+    <div class="settings-inner">
+        <label for="monero-address">Monero Primary Address:</label>
+        <input type="text" id="monero-address" name="monero-address"><br><br>
+        <label for="blockchain-dir">Blockchain Storage Location:</label>
+        <div class="folder-select">
+            <input type="text" id="blockchain-dir" name="blockchain-dir">
+            <button id="select-blockchain-folder">Browse</button>
+        </div>
+        <div class="save-container">
+            <button id="save-settings" disabled>Save Settings</button>
+            <p id="save-effect-notice"><i>Save Successful. Restart Ministo to apply.</i></p>
+        </div>
+    </div>
+</div>

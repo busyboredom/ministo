@@ -1,4 +1,6 @@
 src-tauri/target/
 src-tauri/external-bin/*
-node_modules/
+p2pool_peers.txt
+p2pool.cache
+p2pool.log
 WixTools

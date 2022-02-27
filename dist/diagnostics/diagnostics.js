@@ -60,3 +60,7 @@ function updateStdout(tabName, event) {
 window.__TAURI__.event.listen('xmrig-stdout', (event) => {
     updateStdout("xmrig", event);
 })
+
+window.__TAURI__.event.listen('p2pool-stdout', (event) => {
+    updateStdout("p2pool", event);
+})

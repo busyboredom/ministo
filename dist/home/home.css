@@ -20,10 +20,4 @@
 
 .status {
     margin: auto;
-    max-width: 20ch;
-    text-align: left;
-}
-
-.status span {
-    float: right;
 }
