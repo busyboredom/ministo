@@ -20,7 +20,7 @@ for (let page of pages) {
 window.state.pagesLoaded = true;
 
 // Open homepage.
-navigate("settings");
+navigate("home");
 
 // Retrieve config.
 window.__TAURI__.invoke('get_config')
