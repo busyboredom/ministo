@@ -58,6 +58,10 @@ h1 {
     transition: 0.20s;
 }
 
+.header-bar .header-item {
+    cursor: pointer;
+}
+
 .sidenav #close-nav {
     font-size: large;
 }

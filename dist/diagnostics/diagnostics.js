@@ -1,7 +1,8 @@
-// LISTENERS ----------------------------------------------------------
-
 var initDiagnosticsInterval = setInterval(function () {
     if (window.state.pagesLoaded) {
+
+        // LISTENERS ----------------------------------------------------------
+
         // XMRig tab.
         document.getElementById("xmrig-tab").addEventListener("click", () => {
             newTab("xmrig");
