@@ -1,7 +1,6 @@
 var initSettingsInterval = setInterval(function () {
     if (window.state.pagesLoaded) {
-        document.getElementById("monero-address").value = window.state.config.pool.Local.monero_address;
-        document.getElementById("blockchain-dir").value = window.state.config.pool.Local.blockchain_dir;
+        window.displaySettings();
 
         // LISTENERS --------------------------------------------------
 
@@ -13,10 +12,10 @@ var initSettingsInterval = setInterval(function () {
         })
 
         // Enable saving.
-        document.getElementById("monero-address").addEventListener("change", () => {
+        document.getElementById("monero-address").addEventListener("keyup", () => {
             document.getElementById("save-settings").disabled = false;
         })
-        document.getElementById("blockchain-dir").addEventListener("change", () => {
+        document.getElementById("blockchain-dir").addEventListener("keyup", () => {
             document.getElementById("save-settings").disabled = false;
         })
 
@@ -34,6 +33,13 @@ var initSettingsInterval = setInterval(function () {
         clearTimeout(initSettingsInterval);
     }
 }, 100);
+
+// FUNCTIONS ----------------------------------------------------------
+
+window.displaySettings = function () {
+    document.getElementById("monero-address").value = window.state.config.pool.Local.monero_address;
+    document.getElementById("blockchain-dir").value = window.state.config.pool.Local.blockchain_dir;
+}
 
 // EVENTS -------------------------------------------------------------
 

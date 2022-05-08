@@ -80,6 +80,7 @@ h1 {
 }
 
 button {
+    cursor: pointer;
     background-color: #f26822;
     color: #000000;
     font-size: large;
@@ -96,4 +97,30 @@ button:active {
 button:disabled {
     background-color: #4d4d4d;
 }
-     
+
+.collapsible-help {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: small;
+}
+
+.collapsible-help:active {
+    background: transparent;
+}
+  
+.collapsible-help-content {
+    background-color: #404040;
+    margin: 0em;
+    padding: 1em;
+    display: none;
+    font-size: small;
+}
+
+.collapsible-help-content p {
+    margin: 0em 1em;
+}
+
+a {
+    color: #f26822;
+}

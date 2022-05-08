@@ -1,3 +1,8 @@
+#home-container {
+    display: none;
+    text-align: center;
+}
+
 .start {
     background-color: #00e000;
 }
@@ -12,10 +17,6 @@
 
 .stop:active {
     background-color: darkred;
-}
-
-.center-container {
-    text-align: center;
 }
 
 .status {

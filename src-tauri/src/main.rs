@@ -19,7 +19,7 @@ use tokio::sync::Mutex;
 use config::{default_configuraton_dir, Config};
 use p2pool::start_p2pool;
 use settings::{get_config, save_settings, select_blockchain_folder};
-use xmrig::{pause_mining, resume_mining, start_xmrig, xmrig_status, XmrigState};
+use xmrig::{pause_mining, resume_mining, start_xmrig, XmrigState};
 
 #[command(async)]
 async fn start_mining(window: Window, state: State<'_, MinistoState>) -> Result<(), ()> {
@@ -63,7 +63,6 @@ fn main() {
     tauri::Builder::default()
         .manage(MinistoState::new(config, config_path.to_path_buf()))
         .invoke_handler(tauri::generate_handler![
-            xmrig_status,
             start_mining,
             pause_mining,
             resume_mining,
@@ -75,6 +74,7 @@ fn main() {
         .expect("error while running tauri application");
 }
 
+#[derive(Debug)]
 pub struct MinistoState {
     xmrig: Arc<XmrigState>,
     config: Arc<Mutex<Config>>,

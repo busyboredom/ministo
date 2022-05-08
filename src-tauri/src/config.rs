@@ -5,7 +5,7 @@ use std::{fs, fs::File, io::Read};
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct Config {
     pub pool: Pool,
     pub xmrig: XmrigConfig,
@@ -80,7 +80,7 @@ pub fn default_configuraton_dir() -> PathBuf {
     }
 }
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub enum Pool {
     Local {
         monero_address: String,
@@ -95,13 +95,13 @@ pub enum Pool {
     },
 }
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub enum P2poolChain {
     Main,
     Mini,
 }
 
-#[derive(Deserialize, Serialize, Clone)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct XmrigConfig {
     pub verbose: bool,
     /// Bearer token for API access. If left blank, a secure token will be generated randomly.

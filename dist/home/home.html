@@ -1,9 +1,52 @@
 <link rel='stylesheet' type='text/css' href='home/home.css'>
-<div class="center-container">
+<link rel='stylesheet' type='text/css' href='home/welcome.css'>
+
+<div id="home-container">
     <button class="command-btn start" id="start-mining">Start Mining</button>
     <button class="command-btn stop" id="pause-mining">Pause Mining</button>
     <button class="command-btn start" id="resume-mining">Resume Mining</button>
     <p class="status" id="status">
         <br>Hashrate: <span id="hashrate-10s"> </span>
     </p>
+</div>
+
+<div id="welcome-container">
+    <div class="welcome-inner">
+        <div class="setup-step" id="setup-step-0">
+            <label for="monero-address">What's your wallet's primary address?</label>
+            <input type="text" id="setup-monero-address" name="monero-address" class="setup-input">
+            <button type="button" class="collapsible-help">What's this? &#9660;</button>
+            <div class="collapsible-help-content">
+                <p>
+                    Your wallet's primary address is a unique address <b>beginning with the number 4</b>.
+                    <br><br>
+                    If you don't have a wallet, you can download one from
+                    <a href="https://www.getmonero.org/downloads/">https://www.getmonero.org/downloads/</a>
+                    on desktop or from <a href="https://monero.com/wallets">https://monero.com/wallets</a> on mobile.
+                </p>
+            </div>
+        </div>
+        <div class="setup-step" id="setup-step-1">
+            <label for="blockchain-dir">Where should we store the blockchain?</label>
+            <div class="folder-select">
+                <input type="text" id="setup-blockchain-dir" name="blockchain-dir" class="setup-input">
+                <button id="select-blockchain-folder">Browse</button>
+            </div>
+            <button type="button" class="collapsible-help">What's this? &#9660;</button>
+            <div class="collapsible-help-content">
+                <p>
+                    The blockchain is currently about <b>50 GB</b> and grows a little bigger
+                    every day.
+                    <br><br>
+                    The blockchain contains all of monero's important data. Ministo shrinks it where
+                    possible by "pruning" automatically.
+                </p>
+            </div>
+        </div>
+        <div class="next-container">
+            <button id="back-setting" disabled>Back</button>
+            <button id="next-setting" disabled>Next</button>
+            <button id="done-setup">Done</button>
+        </div>
+    </div>
 </div>

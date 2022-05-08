@@ -1,0 +1,51 @@
+#welcome-container {
+    margin: 3em;
+    display: none;
+    text-align: center;
+}
+
+.welcome-inner {
+    margin: auto;
+    text-align: left;
+    max-width: 80ch;
+}
+
+.welcome-inner input {
+    background-color: #f26822;
+    border: #000000;
+    border-radius: 0.5ch;
+    padding: 0.5ch;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.welcome-inner button {
+    margin: 0;
+}
+
+.welcome-inner .setup-step {
+    display: none;
+}
+
+.welcome-inner #setup-step-0 {
+    display: block;
+}
+
+.welcome-inner .next-container {
+    margin-top: 1em;
+    width: 100%;
+    text-align: center;
+}
+
+#done-setup {
+    display: none;
+}
+
+.folder-select {
+    display: flex;
+    flex-direction: row;
+}
+
+.folder-select button {
+    width: 10ch;
+}

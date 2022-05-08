@@ -1,25 +1,25 @@
-use log::debug;
+use std::time::Duration;
+
+use anyhow::Error;
+use log::{debug, warn};
 use rand::{distributions::Alphanumeric, Rng};
 use serde_json::json;
 use tauri::api::process::{Command, CommandEvent};
-use tauri::{command, State, Window};
-use tokio::sync::Mutex;
+use tauri::{command, Manager, State, Window};
+use tokio::{sync::Mutex, time::interval};
 
 use crate::{config::Pool, MinistoState};
 
-#[command(async)]
-pub async fn xmrig_status(state: State<'_, MinistoState>) -> Result<String, ()> {
-    let client = &state.xmrig.client;
-    let token = &state.xmrig.bearer_token.lock().await;
+async fn xmrig_status(state: &XmrigState) -> Result<String, Error> {
+    let client = &state.client;
+    let token = &state.bearer_token.lock().await;
     let res = client
         .get("http://127.0.0.1:3334/2/summary")
         .bearer_auth(token)
         .send()
-        .await
-        .expect("failed to get xmrig summary using http api")
+        .await?
         .text()
-        .await
-        .expect("failed to parse xmrig summary http response as json");
+        .await?;
     Ok(res)
 }
 
@@ -62,11 +62,13 @@ pub async fn start_xmrig(window: Window, state: State<'_, MinistoState>) {
     }
 
     let (mut rx, _child) = Command::new_sidecar("xmrig")
-        .expect("failed to create `xmrig` binary command")
+        .expect("failed to create `xmrig` command")
         .args(args)
         .spawn()
         .expect("failed to start XMRig");
 
+    let window_label = window.label();
+    let window_clone = window.get_window(window_label).unwrap();
     tauri::async_runtime::spawn(async move {
         // Read stdout.
         while let Some(event) = rx.recv().await {
@@ -75,10 +77,30 @@ pub async fn start_xmrig(window: Window, state: State<'_, MinistoState>) {
 
                 // Send stdout event.
                 let html = ansi_to_html::convert_escaped(&line).unwrap_or(line) + "</br>";
-                window
+                window_clone
                     .emit("xmrig-stdout", html)
                     .expect("failed to emit xmrig stdout event");
             }
+        }
+    });
+
+    let xmrig_state = state.xmrig.clone();
+    tauri::async_runtime::spawn(async move {
+        let mut interval = interval(Duration::from_secs(8));
+        loop {
+            interval.tick().await;
+            // Get xmrig status.
+            match xmrig_status(&xmrig_state).await {
+                Ok(status) => {
+                    // Send status event.
+                    window
+                        .emit("xmrig-status", &status)
+                        .expect("failed to emit xmrig stdout event");
+                }
+                Err(e) => {
+                    warn!("No response from XMRig: {}", e.root_cause());
+                }
+            };
         }
     });
 }
@@ -129,6 +151,7 @@ pub async fn resume_mining(state: State<'_, MinistoState>) -> Result<String, ()>
     Ok(res)
 }
 
+#[derive(Debug)]
 pub struct XmrigState {
     client: reqwest::Client,
     bearer_token: Mutex<String>,

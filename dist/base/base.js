@@ -13,48 +13,55 @@ window.state = {
     config: null,
 }
 
+// Retrieve config.
+window.__TAURI__.invoke('get_config')
+    .then(config => window.state.config = config);
+
 // Load pages.
 for (let page of pages) {
     loadPage(page);
 }
 window.state.pagesLoaded = true;
 
-// Open homepage.
+// Go home.
 navigate("home");
 
-// Retrieve config.
-window.__TAURI__.invoke('get_config')
-    .then(config => window.state.config = config);
+var initBaseInterval = setInterval(function () {
+    if (window.state.pagesLoaded) {
 
-// LISTENERS ----------------------------------------------------------
+        // LISTENERS ----------------------------------------------------------
 
-// Open sidenav.
-document.getElementById("hamburger-menu").addEventListener("click", () => {
-    document.getElementById("sideBar").style.width = "250px";
-})
+        // Open sidenav.
+        document.getElementById("hamburger-menu").addEventListener("click", () => {
+            document.getElementById("sideBar").style.width = "250px";
+        })
 
-// Close sidenav.
-document.getElementById("close-nav").addEventListener("click", () => {
-    document.getElementById("sideBar").style.width = "0";
-})
+        // Close sidenav.
+        document.getElementById("close-nav").addEventListener("click", () => {
+            document.getElementById("sideBar").style.width = "0";
+        })
 
-// Go to home.
-document.getElementById("home-nav").addEventListener("click", () => {
-    navigate("home");
-})
-document.getElementById("ministo-icon").addEventListener("click", () => {
-    navigate("home");
-})
+        // Go to home.
+        document.getElementById("home-nav").addEventListener("click", () => {
+            navigate("home");
+        })
+        document.getElementById("ministo-icon").addEventListener("click", () => {
+            navigate("home");
+        })
 
-// Go to settings.
-document.getElementById("settings-nav").addEventListener("click", () => {
-    navigate("settings");
-})
+        // Go to settings.
+        document.getElementById("settings-nav").addEventListener("click", () => {
+            navigate("settings");
+        })
 
-// Go to diagnostics.
-document.getElementById("diagnostics-nav").addEventListener("click", () => {
-    navigate("diagnostics");
-})
+        // Go to diagnostics.
+        document.getElementById("diagnostics-nav").addEventListener("click", () => {
+            navigate("diagnostics");
+        })
+
+        clearTimeout(initBaseInterval);
+    }
+}, 100);
 
 // FUNCTIONS ----------------------------------------------------------
 
