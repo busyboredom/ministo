@@ -38,6 +38,7 @@ var initWelcomeInterval = setInterval(function () {
                 document.getElementById("back-setting").disabled = true;
             }
             document.getElementById("next-setting").style.display = "inline-block";
+            document.getElementById("next-setting").disabled = false;
             document.getElementById("done-setup").style.display = "none";
         })
 

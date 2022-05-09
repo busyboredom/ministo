@@ -1,4 +1,4 @@
-const pages = ["home", "settings", "diagnostics"];
+const pages = ["home", "settings", "diagnostics", "donate"];
 
 window.state = {
     xmrig: {
@@ -57,6 +57,11 @@ var initBaseInterval = setInterval(function () {
         // Go to diagnostics.
         document.getElementById("diagnostics-nav").addEventListener("click", () => {
             navigate("diagnostics");
+        })
+
+        // Go to donate.
+        document.getElementById("donate-nav").addEventListener("click", () => {
+            navigate("donate");
         })
 
         clearTimeout(initBaseInterval);

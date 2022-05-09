@@ -9,13 +9,17 @@
     max-width: 80ch;
 }
 
-.settings-inner input {
+.settings-inner input, textarea {
     background-color: #f26822;
     border: #000000;
     border-radius: 0.5ch;
     padding: 0.5ch;
     width: 100%;
     box-sizing: border-box;
+}
+
+.settings-inner textarea {
+    resize: none;
 }
 
 .settings-inner button {

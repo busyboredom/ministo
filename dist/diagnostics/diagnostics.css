@@ -22,11 +22,11 @@
     color: #ffffff;
     font-size: large;
     border: 0;
-    padding: 0.5em;
+    padding: 0.5em 0.25em;
     border-radius: 0;
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
-    width: 6em;
+    width: 9ch;
 }
 
 #diagnostics-tabs .tab-button.active {
@@ -35,6 +35,11 @@
 
 .terminal {
     overflow: auto;
+    display: none;
+}
+
+#xmrig-stdout {
+    display: block;
 }
 
 .terminal p {

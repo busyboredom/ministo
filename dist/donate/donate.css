@@ -1,0 +1,78 @@
+#donate-container {
+    top: 8em;
+    left: 2em;
+    right: 2em;
+    height: calc(100% - 14em);
+    padding: 2em;
+    background-color: #272727;
+    position: absolute;
+    overflow: scroll;
+}
+
+#donate-tabs {
+    position: absolute;
+    top: 0;
+    left: 2em;
+    height: 12em;
+}
+
+#donate-tabs .tab-button {
+    background-color: #151515;
+    color: #ffffff;
+    font-size: large;
+    border: 0;
+    padding: 0.5em 0.25em;
+    border-radius: 0;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    width: 8ch;
+}
+
+#donate-tabs .tab-button.active {
+    background-color: #272727;
+}
+
+.donate {
+    display: none;
+    height: 100%;
+    width: 100%;
+    word-wrap: break-word;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.donate .qrcode-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.donate svg {
+    flex: 0 1 25ch;
+    border-radius: 1em;
+    background-color: #dddddd;
+}
+
+.donate .address-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.donate .address-container p {
+    width: calc(100% - 7em);
+    flex-basis: 20ch;
+}
+
+.donate .address-container button {
+    margin: 0.5em;
+    padding: 0.5em;
+    width: 5em;
+}
+  
+#ministo-donate {
+    display: flex;
+}

@@ -10,13 +10,17 @@
     max-width: 80ch;
 }
 
-.welcome-inner input {
+.welcome-inner input, textarea {
     background-color: #f26822;
     border: #000000;
     border-radius: 0.5ch;
     padding: 0.5ch;
     width: 100%;
     box-sizing: border-box;
+}
+
+.welcome-inner textarea {
+    resize: none;
 }
 
 .welcome-inner button {
