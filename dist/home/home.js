@@ -59,7 +59,6 @@ function resumeMining() {
 
 function updateStatus(status) {
     let summary = JSON.parse(status);
-    console.log(summary)
 
     // Display hashrate.
     if (summary.hashrate.total[0] !== null) {
