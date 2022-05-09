@@ -52,7 +52,17 @@
     },
     "allowlist": {
       "shell": {
-        "execute": true
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "external-bin/xmrig",
+            "sidecar": true
+          },
+          {
+            "name": "external-bin/p2pool",
+            "sidecar": true
+          }
+        ]
       },
       "dialog": {
         "open": true

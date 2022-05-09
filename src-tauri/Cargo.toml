@@ -24,7 +24,7 @@ rand = "0.8"
 reqwest = { version = "0.11", features = ["json"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tauri = { version = "1.0.0-rc", features = ["clipboard-write-text", "dialog-open", "shell-execute"] }
+tauri = { version = "1.0.0-rc", features = ["clipboard-write-text", "dialog-open", "shell-sidecar"] }
 tokio = "1"
 url = "2"
 

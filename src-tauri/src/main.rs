@@ -13,7 +13,7 @@ use std::sync::Arc;
 
 use clap::Arg;
 use log::info;
-use tauri::{command, State, Window};
+use tauri::{command, Manager, State, Window};
 use tokio::sync::Mutex;
 
 use config::{default_configuraton_dir, Config};
@@ -59,7 +59,6 @@ fn main() {
             config
         }
     };
-
     tauri::Builder::default()
         .manage(MinistoState::new(config, config_path.to_path_buf()))
         .invoke_handler(tauri::generate_handler![
@@ -70,6 +69,11 @@ fn main() {
             save_settings,
             get_config
         ])
+        .setup(|app| {
+            #[cfg(debug_assertions)]
+            app.get_window("main").unwrap().open_devtools();
+            Ok(())
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

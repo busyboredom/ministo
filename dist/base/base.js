@@ -26,6 +26,9 @@ window.state.pagesLoaded = true;
 // Go home.
 navigate("home");
 
+// Disable context menu.
+disableMenu();
+
 var initBaseInterval = setInterval(function () {
     if (window.state.pagesLoaded) {
 
@@ -89,4 +92,17 @@ function loadPage(page) {
     fetch(page + "/" + page + ".html")
         .then(content => content.text())
         .then(text => contentArea.innerHTML = text);
+}
+
+// Disable context menu.
+function disableMenu() {
+    document.addEventListener('contextmenu', event => {
+        event.preventDefault();
+        return false;
+    }, { capture: true })
+
+    document.addEventListener('selectstart', event => {
+        event.preventDefault();
+        return false;
+    }, { capture: true })
 }
