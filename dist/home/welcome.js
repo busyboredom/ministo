@@ -73,6 +73,18 @@ var initWelcomeInterval = setInterval(function () {
             })
         }
 
+        // Browse.
+        document.getElementById("setup-select-blockchain-folder").addEventListener("click", () => {
+            window.__TAURI__
+                .invoke('select_blockchain_folder');
+        })
+
         clearTimeout(initWelcomeInterval);
     }
 }, 100);
+
+// EVENTS -------------------------------------------------------------
+
+window.__TAURI__.event.listen('blockchain-folder-selected', (event) => {
+    document.getElementById("setup-blockchain-dir").value = event.payload;
+})

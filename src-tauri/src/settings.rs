@@ -2,7 +2,7 @@ use tauri::api::dialog::FileDialogBuilder;
 use tauri::{command, State, Window};
 
 use crate::{
-    config::{Config, Pool},
+    config::{default_blockchain_dir, Config, Pool},
     MinistoState,
 };
 
@@ -39,9 +39,11 @@ pub async fn get_config(state: State<'_, MinistoState>) -> Result<Config, String
 
 #[command]
 pub async fn select_blockchain_folder(window: Window) {
-    FileDialogBuilder::new().pick_folder(move |folder_path| {
-        window
-            .emit("blockchain-folder-selected", folder_path)
-            .expect("failed to emit blockchain folder selected event")
+    FileDialogBuilder::new().pick_folder(move |selected_path| {
+        if selected_path.is_some() {
+            window
+                .emit("blockchain-folder-selected", selected_path)
+                .expect("failed to emit blockchain folder selected event")
+        }
     })
 }
