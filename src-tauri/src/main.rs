@@ -13,13 +13,16 @@ use std::sync::Arc;
 
 use clap::Arg;
 use log::info;
-use tauri::{command, Manager, State, Window};
+use tauri::{command, State, Window};
 use tokio::sync::Mutex;
 
 use config::{default_configuraton_dir, Config};
 use p2pool::start_p2pool;
 use settings::{get_config, save_settings, select_blockchain_folder};
 use xmrig::{pause_mining, resume_mining, start_xmrig, XmrigState};
+
+#[cfg(debug_assertions)]
+use tauri::Manager;
 
 #[command(async)]
 async fn start_mining(window: Window, state: State<'_, MinistoState>) -> Result<(), ()> {
@@ -59,6 +62,7 @@ fn main() {
             config
         }
     };
+    #[cfg_attr(not(debug_assertions), allow(unused_variables))]
     tauri::Builder::default()
         .manage(MinistoState::new(config, config_path.to_path_buf()))
         .invoke_handler(tauri::generate_handler![

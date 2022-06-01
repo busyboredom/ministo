@@ -2,7 +2,7 @@ use tauri::api::dialog::FileDialogBuilder;
 use tauri::{command, State, Window};
 
 use crate::{
-    config::{default_blockchain_dir, Config, Pool},
+    config::{Config, Pool},
     MinistoState,
 };
 
