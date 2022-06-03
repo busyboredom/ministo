@@ -6,6 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 # Build dependencies
 ./build-xmrig.sh
 ./build-p2pool.sh
+./build-monerod.sh
 
 # Build Ministo
 cd ../../

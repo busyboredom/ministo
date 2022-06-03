@@ -4,11 +4,16 @@ use anyhow::Error;
 use log::{debug, warn};
 use rand::{distributions::Alphanumeric, Rng};
 use serde_json::json;
-use tauri::api::process::{Command, CommandEvent};
-use tauri::{command, Manager, State, Window};
+use tauri::{
+    api::process::{Command, CommandEvent},
+    command, Manager, State, Window,
+};
 use tokio::{sync::Mutex, time::interval};
 
-use crate::{config::Pool, MinistoState};
+use crate::{
+    config::pool::{Pool, RemotePool},
+    MinistoState,
+};
 
 async fn xmrig_status(state: &XmrigState) -> Result<String, Error> {
     let client = &state.client;
@@ -43,7 +48,7 @@ pub async fn start_xmrig(window: Window, state: State<'_, MinistoState>) {
 
     let pool_address = match &config.pool {
         Pool::Local { .. } => "127.0.0.1:3333".to_string(),
-        Pool::Remote { ip, port } => format!("{}:{}", ip, port),
+        Pool::Remote(RemotePool { ip, port }) => format!("{}:{}", ip, port),
     };
 
     let mut args = vec![

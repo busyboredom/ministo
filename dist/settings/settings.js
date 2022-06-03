@@ -37,8 +37,8 @@ var initSettingsInterval = setInterval(function () {
 // FUNCTIONS ----------------------------------------------------------
 
 window.displaySettings = function () {
-    document.getElementById("monero-address").value = window.state.config.pool.Local.monero_address;
-    document.getElementById("blockchain-dir").value = window.state.config.pool.Local.blockchain_dir;
+    document.getElementById("monero-address").value = window.state.config.pool.local.moneroAddress;
+    document.getElementById("blockchain-dir").value = window.state.config.pool.local.daemon.local.blockchainDir;
 }
 
 // EVENTS -------------------------------------------------------------

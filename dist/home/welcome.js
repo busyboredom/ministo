@@ -1,7 +1,7 @@
 var initWelcomeInterval = setInterval(function () {
     if (window.state.pagesLoaded) {
 
-        document.getElementById("setup-blockchain-dir").value = window.state.config.pool.Local.blockchain_dir;
+        document.getElementById("setup-blockchain-dir").value = window.state.config.pool.local.daemon.local.blockchainDir;
 
         // LISTENERS ----------------------------------------------------------
 

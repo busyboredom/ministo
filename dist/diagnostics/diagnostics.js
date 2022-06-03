@@ -65,3 +65,7 @@ window.__TAURI__.event.listen('xmrig-stdout', (event) => {
 window.__TAURI__.event.listen('p2pool-stdout', (event) => {
     updateStdout("p2pool", event);
 })
+
+window.__TAURI__.event.listen('monerod-stdout', (event) => {
+    updateStdout("monerod", event);
+})

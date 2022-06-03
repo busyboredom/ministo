@@ -1,8 +1,11 @@
-use tauri::api::dialog::FileDialogBuilder;
-use tauri::{command, State, Window};
+use tauri::{api::dialog::FileDialogBuilder, command, State, Window};
 
 use crate::{
-    config::{Config, Pool},
+    config::{
+        daemon::{Daemon, LocalDaemon},
+        pool::{LocalPool, Pool},
+        Config,
+    },
     MinistoState,
 };
 
@@ -16,15 +19,15 @@ pub async fn save_settings(
     let mut config = state.config.lock().await;
 
     match &mut config.pool {
-        Pool::Local {
+        Pool::Local(LocalPool {
             monero_address,
-            blockchain_dir,
+            daemon: Daemon::Local(LocalDaemon { blockchain_dir, .. }),
             ..
-        } => {
-            *monero_address = address;
+        }) => {
+            *monero_address = Some(address);
             *blockchain_dir = folder;
         }
-        Pool::Remote { .. } => {}
+        _ => Err("")?,
     }
 
     config.save(config_path).map_err(|e| e.to_string())?;

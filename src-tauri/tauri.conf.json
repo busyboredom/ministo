@@ -25,7 +25,8 @@
       "resources": [],
       "externalBin": [
         "external-bin/xmrig",
-        "external-bin/p2pool"
+        "external-bin/p2pool",
+        "external-bin/monerod"
       ],
       "copyright": "",
       "category": "DeveloperTool",
@@ -52,8 +53,7 @@
     },
     "allowlist": {
       "shell": {
-        "sidecar": true,
-        "execute": true
+        "sidecar": true
       },
       "dialog": {
         "open": true

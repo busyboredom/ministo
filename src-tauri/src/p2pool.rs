@@ -1,22 +1,27 @@
+use anyhow::{Error, Result};
 use log::debug;
-use tauri::api::process::{Command, CommandEvent};
-use tauri::{State, Window};
+use tauri::{
+    api::process::{Command, CommandEvent},
+    State, Window,
+};
 
-use crate::config::{P2poolChain, Pool};
+use crate::config::pool::{LocalPool, P2poolChain, Pool};
 use crate::MinistoState;
 
-pub async fn start_p2pool(window: Window, state: State<'_, MinistoState>) {
+pub async fn start_p2pool(window: Window, state: State<'_, MinistoState>) -> Result<()> {
     let pool_config = &state.config.lock().await.pool;
     // No need to continue if we're not configured to use a local pool.
-    if let Pool::Local {
+    if let Pool::Local(LocalPool {
         monero_address,
         chain,
-        verbosity,
+        p2pool_verbosity,
         ..
-    } = pool_config
+    }) = pool_config
     {
-        let address = monero_address;
-        let verbosity_str = verbosity.to_string();
+        let address = monero_address
+            .as_ref()
+            .ok_or_else(|| Error::msg("Monero address not configured"))?;
+        let verbosity_str = p2pool_verbosity.to_string();
         let mut args = vec![
             "--host",
             "127.0.0.1",
@@ -49,5 +54,10 @@ pub async fn start_p2pool(window: Window, state: State<'_, MinistoState>) {
                 }
             }
         });
+    } else {
+        return Err(Error::msg(
+            "Only local pools are supported. Have you been messing with your configuration file?",
+        ));
     }
+    Ok(())
 }

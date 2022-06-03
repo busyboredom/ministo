@@ -1,11 +1,22 @@
-use std::path::{Path, PathBuf};
+pub mod daemon;
+pub mod pool;
+
 use std::string::ToString;
+use std::{
+    default::Default,
+    path::{Path, PathBuf},
+};
 use std::{fs, fs::File, io::Read};
 
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 
+use self::pool::{LocalPool, Pool};
+
 #[derive(Deserialize, Serialize, Clone, Debug)]
+#[serde(default)]
+#[serde(rename_all = "camelCase")]
+#[serde(deny_unknown_fields)]
 pub struct Config {
     pub pool: Pool,
     pub xmrig: XmrigConfig,
@@ -14,16 +25,11 @@ pub struct Config {
 impl Config {
     pub fn new(monero_address: &str) -> Config {
         Config {
-            pool: Pool::Local {
-                monero_address: monero_address.to_string(),
-                blockchain_dir: default_blockchain_dir().to_string_lossy().into_owned(),
-                chain: P2poolChain::Main,
-                verbosity: 2,
-            },
-            xmrig: XmrigConfig {
-                verbose: false,
-                bearer_token: None,
-            },
+            pool: Pool::Local(LocalPool {
+                monero_address: Some(monero_address.to_string()),
+                ..Default::default()
+            }),
+            ..Default::default()
         }
     }
 
@@ -55,15 +61,15 @@ impl Config {
     }
 }
 
-/// Default blockchain location according to
-/// https://monerodocs.org/interacting/overview/#data-directory
-pub fn default_blockchain_dir() -> PathBuf {
-    if cfg!(window) {
-        PathBuf::from(r"C:\ProgramData\bitmonero\")
-    } else {
-        home::home_dir()
-            .expect("failed to determine home directory")
-            .join(".bitmonero/")
+impl Default for Config {
+    fn default() -> Self {
+        Config {
+            pool: Pool::Local(LocalPool::default()),
+            xmrig: XmrigConfig {
+                verbose: false,
+                bearer_token: None,
+            },
+        }
     }
 }
 
@@ -81,27 +87,8 @@ pub fn default_configuraton_dir() -> PathBuf {
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub enum Pool {
-    Local {
-        monero_address: String,
-        blockchain_dir: String,
-        chain: P2poolChain,
-        /// Verbosity of P2Pool. Should be an integer between 0 and 6.
-        verbosity: u8,
-    },
-    Remote {
-        ip: String,
-        port: u16,
-    },
-}
-
-#[derive(Deserialize, Serialize, Clone, Debug)]
-pub enum P2poolChain {
-    Main,
-    Mini,
-}
-
-#[derive(Deserialize, Serialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
+#[serde(deny_unknown_fields)]
 pub struct XmrigConfig {
     pub verbose: bool,
     /// Bearer token for API access. If left blank, a secure token will be generated randomly.
