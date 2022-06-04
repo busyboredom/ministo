@@ -14,7 +14,7 @@ ministo --config my/custom/config/folder
 
 ### Preperation
 1. Clone the repo: `git clone --recurse-submodules 
-  https://github.com/VennilaPugazhenthi/ministo.git`
+   https://github.com/busyboredom/ministo.git`
 
 ### How to run with hot reloading (for development only)
 1. Install devserver with `cargo install devserver`
