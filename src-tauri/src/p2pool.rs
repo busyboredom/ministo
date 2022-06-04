@@ -44,7 +44,7 @@ pub async fn start_p2pool(window: Window, state: State<'_, MinistoState>) -> Res
             // Read stdout.
             while let Some(event) = rx.recv().await {
                 if let CommandEvent::Stdout(line) = event {
-                    debug!("P2Pool Output: {}", line);
+                    debug!("{}", line);
 
                     // Send stdout event.
                     let html = ansi_to_html::convert_escaped(&line).unwrap_or(line) + "</br>";

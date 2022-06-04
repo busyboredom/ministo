@@ -49,7 +49,7 @@ pub async fn start_monerod(window: Window, state: State<'_, MinistoState>) {
             // Read stdout.
             while let Some(event) = rx.recv().await {
                 if let CommandEvent::Stdout(line) = event {
-                    debug!("Monerod Output: {}", line);
+                    debug!("{}", line);
 
                     // Send stdout event.
                     let html = ansi_to_html::convert_escaped(&line).unwrap_or(line) + "</br>";

@@ -71,11 +71,11 @@ function updateStatus(status) {
 function setupComplete() {
     let config = window.state.config;
     if (config.pool) {
-        if (config.pool.Local) {
-            if (config.pool.Local.monero_address) {
+        if (config.pool.local) {
+            if (config.pool.local.moneroAddress) {
                 return true
             }
-        } else if (config.pool.Remote) {
+        } else if (config.pool.remote) {
             return true
         }
     }
