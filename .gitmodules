@@ -1,6 +1,6 @@
 [submodule "xmrig"]
 	path = xmrig
-	url = git@github.com:xmrig/xmrig.git
+	url = https://github.com/busyboredom/xmrig.git
 [submodule "p2pool"]
 	path = p2pool
 	url = https://github.com/SChernykh/p2pool
