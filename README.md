@@ -1,4 +1,4 @@
-# Ministo
+# Ministo (WIP)
 
 ## Configuration
 Ministo's configuration file location is dependent on your operating system.
