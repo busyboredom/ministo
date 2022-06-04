@@ -13,9 +13,8 @@ ministo --config my/custom/config/folder
 ## Build and Run
 
 ### Preperation
-1. Clone the repo: `git clone --recurse-submodules
-   https://github.com/VennilaPugazhenthi/ministo.git`
-3. Run monerod as described here: https://p2pool.io/#help
+1. Clone the repo: `git clone --recurse-submodules 
+  https://github.com/VennilaPugazhenthi/ministo.git`
 
 ### How to run with hot reloading (for development only)
 1. Install devserver with `cargo install devserver`
