@@ -16,7 +16,7 @@ use std::{
 
 use clap::Arg;
 use log::{error, info};
-use tauri::{command, RunEvent, State, Window, Manager};
+use tauri::{command, Manager, RunEvent, State, Window};
 use tokio::{join, sync::Mutex};
 
 use config::{default_configuraton_dir, Config};
