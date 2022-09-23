@@ -10,7 +10,6 @@ edition = "2021"
 build = "src/build.rs"
 
 [build-dependencies]
-num_cpus = "1"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]

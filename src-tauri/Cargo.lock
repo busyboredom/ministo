@@ -74,7 +74,6 @@ dependencies = [
  "home",
  "libc",
  "log",
- "num_cpus",
  "rand 0.8.5",
  "reqwest",
  "serde",
