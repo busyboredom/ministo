@@ -25,6 +25,7 @@ pub async fn start_p2pool(window: Window, state: State<'_, MinistoState>) -> Res
         let mut args = vec![
             "--host",
             "127.0.0.1",
+            "--light-mode",
             "--loglevel",
             &verbosity_str,
             "--wallet",
@@ -43,15 +44,18 @@ pub async fn start_p2pool(window: Window, state: State<'_, MinistoState>) -> Res
         tauri::async_runtime::spawn(async move {
             // Read stdout.
             while let Some(event) = rx.recv().await {
-                if let CommandEvent::Stdout(line) = event {
-                    debug!("{}", line);
+                let line = match event {
+                    CommandEvent::Stdout(line) => line,
+                    CommandEvent::Stderr(line) => line,
+                    _ => continue
+                };
+                debug!("{}", line);
 
-                    // Send stdout event.
-                    let html = ansi_to_html::convert_escaped(&line).unwrap_or(line) + "</br>";
-                    window
-                        .emit("p2pool-stdout", html)
-                        .expect("failed to emit p2pool stdout event");
-                }
+                // Send stdout event.
+                let html = ansi_to_html::convert_escaped(&line).unwrap_or(line) + "</br>";
+                window
+                    .emit("p2pool-stdout", html)
+                    .expect("failed to emit p2pool stdout event");
             }
         });
     } else {
