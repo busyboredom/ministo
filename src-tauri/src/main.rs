@@ -20,7 +20,7 @@ use tauri::{command, Manager, RunEvent, State, Window};
 use tokio::{join, sync::Mutex};
 
 use config::{default_configuraton_dir, Config};
-use monerod::start_monerod;
+use monerod::{start_monerod, MonerodState};
 use p2pool::start_p2pool;
 use settings::{get_config, save_settings, select_blockchain_folder};
 use xmrig::{kill_xmrig, pause_mining, resume_mining, start_xmrig, XmrigState};
@@ -34,7 +34,6 @@ async fn start_mining(window: Window, state: State<'_, MinistoState>) -> Result<
     );
     res.map_err(|e| e.to_string())?;
 
-    // Return result because of https://github.com/tauri-apps/tauri/issues/2533
     Ok(())
 }
 
@@ -91,6 +90,7 @@ async fn main() {
 #[derive(Debug)]
 pub struct MinistoState {
     xmrig: Arc<XmrigState>,
+    monerod: Arc<MonerodState>,
     config: Arc<Mutex<Config>>,
     config_path: PathBuf,
 }
@@ -113,6 +113,7 @@ impl MinistoState {
         };
         MinistoState {
             xmrig: Arc::new(XmrigState::new()),
+            monerod: Arc::new(MonerodState::new()),
             config: Arc::new(Mutex::new(config)),
             config_path,
         }
