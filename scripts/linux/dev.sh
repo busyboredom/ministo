@@ -28,7 +28,7 @@ waitforcancel() {
 
 # Run ministo dev
 cd ../../
-devserver --reload --path dist &
+devserver --noreload --path dist &
 cargo tauri dev
 
 # Trap the input and wait for the script to be cancelled
