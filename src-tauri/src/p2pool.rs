@@ -47,7 +47,7 @@ pub async fn start_p2pool(window: Window, state: State<'_, MinistoState>) -> Res
                 let line = match event {
                     CommandEvent::Stdout(line) => line,
                     CommandEvent::Stderr(line) => line,
-                    _ => continue
+                    _ => continue,
                 };
                 debug!("{}", line);
 
