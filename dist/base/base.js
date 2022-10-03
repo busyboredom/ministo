@@ -94,7 +94,7 @@ function loadPage(page) {
         .then(text => contentArea.innerHTML = text);
 }
 
-// Disable context menu.
+// Disable context menu (the right click menu).
 function disableMenu() {
     document.addEventListener('contextmenu', event => {
         event.preventDefault();
